@@ -8,7 +8,7 @@ import org.kata.vending.busObjs.Coin;
 public class CoinFactoryTest {
 
 	@Test
-	public void FactoryReturnsPenny() {
+	public void FactoryReturnsCoin() {
 		Coin coin = CoinFactory.create(2.5, .75, 1.52);
 		assertEquals(PennyCoin.class, coin.getClass());
 	}

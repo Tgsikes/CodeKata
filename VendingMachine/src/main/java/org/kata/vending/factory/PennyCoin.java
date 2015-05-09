@@ -4,15 +4,20 @@ import org.kata.vending.busObjs.Coin;
 
 public class PennyCoin extends Coin {
 
-	private static boolean testTolerance(double coinSpec, double lower,
-			double upper) {
-		return coinSpec < upper && coinSpec > lower;
+	public static boolean weightTolerance(double weight) {
+		return withinTolerance(weight, 2.4, 2.6);
 	}
 
-	public static boolean inTolerance(double weight, double diameter,
-			double thickness) {
-		return testTolerance(weight, 2.4, 2.6)
-				&& testTolerance(diameter, .74, .76)
-				&& testTolerance(thickness, 1.51, 1.53);
+	public static boolean diaTolerance(double diameter) {
+		return withinTolerance(diameter, .74, .76);
+	}
+
+	public static boolean thicknessTolerance(double thickness) {
+		return withinTolerance(thickness, 1.51, 1.53);
+	}
+
+	private static boolean withinTolerance(double coinSpec, double lower,
+			double upper) {
+		return coinSpec < upper && coinSpec > lower;
 	}
 }
