@@ -1,7 +1,5 @@
-package org.kata.vending.factory;
+package org.kata.vending.busObjs;
 
-import org.kata.vending.busObjs.Coin;
-import org.kata.vending.busObjs.Tolerance;
 
 public class PennyCoin extends Coin {
 	private static  Tolerance wght = new Tolerance(2.4, 2.6);
