@@ -5,24 +5,28 @@ import org.kata.vending.busObjs.Tolerance;
 
 public class CoinMetaData {
 	private Tolerance diameter;
-	private Coin template;
+	private double value;
 	private Tolerance thickness;
 	private Tolerance weight;
 
+	public CoinMetaData(double lowerWeight, double upperWeight,
+			double lowerDiameter, double upDiameter, double lowerThickness,
+			double upperThickness, double value) {
+		this(new Tolerance(lowerWeight, upperWeight), new Tolerance(
+				lowerDiameter, upDiameter), new Tolerance(lowerThickness,
+				upperThickness), value);
+	}
+
 	public CoinMetaData(Tolerance weight, Tolerance diameter,
-			Tolerance thickness, Coin template) {
+			Tolerance thickness, double value) {
 		this.setDiameter(diameter);
 		this.setThickness(thickness);
 		this.setWeight(weight);
-		this.setTemplate(template);
+		this.setValue(value);
 	}
 
 	public Tolerance getDiameter() {
 		return diameter;
-	}
-
-	public Coin getTemplate() {
-		return template;
 	}
 
 	public Tolerance getThickness() {
@@ -35,10 +39,6 @@ public class CoinMetaData {
 
 	public void setDiameter(Tolerance diameter) {
 		this.diameter = diameter;
-	}
-
-	public void setTemplate(Coin template) {
-		this.template = template;
 	}
 
 	public void setThickness(Tolerance thickness) {
@@ -55,16 +55,12 @@ public class CoinMetaData {
 				&& getThickness().withInTolerance(thickness);
 	}
 
-	public Coin getCoin() {
-		Coin rtn = null;
-		try {
-			rtn = getTemplate().getClass().newInstance();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
-		}
-		return rtn;
+	public double getValue() {
+		return value;
+	}
+
+	public void setValue(double value) {
+		this.value = value;
 	}
 
 }
