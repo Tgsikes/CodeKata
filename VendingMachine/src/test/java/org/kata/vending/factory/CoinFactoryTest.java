@@ -2,6 +2,10 @@ package org.kata.vending.factory;
 
 import static org.junit.Assert.assertEquals;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.IndexColorModel;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kata.vending.busObjs.Coin;
@@ -24,7 +28,7 @@ public class CoinFactoryTest {
 	}
 
 	@Test
-	public void FactoryReturnsCoinWhenPassedSpecification() {
+	public void factoryReturnsCoinWhenPassedSpecification() {
 		Coin coin = factory.create(2.5, 19.05, 1.52);
 		assertEquals(.01, coin.getValue(),0);
 		coin = factory.create(5, 21.21, 1.95);
@@ -38,4 +42,23 @@ public class CoinFactoryTest {
 		coin = factory.create(8.1, 26.49, 2);
 		assertEquals(1,coin.getValue(),0);
 	}
+	
+	@Test(expected=NoSuchCoinException.class)
+	public void factoryThrowsExceptionWhenNoMatch()
+	{
+		Coin coin = factory.create(2.5, 19.05, 1.52);
+		coin = factory.create(8.1, 26, 2);
+		assertEquals(1,coin.getValue(),0);
+	}
+	@Test
+	public void factoryReturnsCurrencyWhenPassedInputObject()
+	{
+		assertEquals(.01,factory.create(new CoinageInput(2.5, 19.05, 1.52)).getValue(),0);
+		
+	}
+	@Test(expected=UnsupportedOperationException.class)
+	public void factoryThrowsUnsupportedExceptionForPaperMoney(){
+		assertEquals(1, factory.create(new PaperInput(new BufferedImage(1,2,BufferedImage.TYPE_INT_RGB))).getValue(),0);
+	}
+	
 }

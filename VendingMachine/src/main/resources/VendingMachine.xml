@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="CoinFactory" class="org.kata.vending.factory.CoinFactory"
+		scope="singleton">
+		<property name="coinTypes">
+			<list>
+				<bean id="Penny" class="org.kata.vending.factory.CoinMetaData">
+					<constructor-arg value="2"/>
+					<constructor-arg value="3"/>
+					<constructor-arg value="19"/>
+					<constructor-arg value="19.15"/>
+					<constructor-arg value="1.42"/>
+					<constructor-arg value="1.62"/>
+					<constructor-arg value=".01"/>
+				</bean>
+				<bean id="Nickel" class="org.kata.vending.factory.CoinMetaData">
+					<constructor-arg value="4.9"/><constructor-arg value="5.1"/>
+					<constructor-arg value="21"/><constructor-arg value="21.22"/>
+					<constructor-arg value="1.90"/><constructor-arg value="2"/>
+					<constructor-arg value= ".05"/>
+				</bean>
+				<bean id="dime" class="org.kata.vending.factory.CoinMetaData">
+					<constructor-arg value="2.16"/><constructor-arg value="2.36"/>
+					<constructor-arg value="17.81"/><constructor-arg value="18.01"/>
+					<constructor-arg value="1.25"/><constructor-arg value="1.45"/>
+					<constructor-arg value= ".1"/>
+					</bean>
+				<bean id="quarter" class="org.kata.vending.factory.CoinMetaData">
+					<constructor-arg value="5.660"/><constructor-arg value="5.680"/>
+					<constructor-arg value="24.16"/><constructor-arg value="24.36"/>
+					<constructor-arg value="1.65"/><constructor-arg value="1.85"/>
+					<constructor-arg value= ".25"/>
+				</bean>
+				<bean id="half" class="org.kata.vending.factory.CoinMetaData">
+					<constructor-arg value="11.330"/><constructor-arg value="11.350"/>
+					<constructor-arg value="30.51"/><constructor-arg value="30.71"/>
+					<constructor-arg value="2.05"/><constructor-arg value="2.25"/>
+					<constructor-arg value= ".5"/>
+				</bean>
+				<bean id="dollar" class="org.kata.vending.factory.CoinMetaData">
+					<constructor-arg value="8.05"/><constructor-arg value="8.15"/>
+					<constructor-arg value="26.39"/><constructor-arg value="26.59"/>
+					<constructor-arg value="1.95"/><constructor-arg value="2.05"/>
+					<constructor-arg value= "1"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>

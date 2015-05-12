@@ -1,6 +1,5 @@
 package org.kata.vending.factory;
 
-import org.kata.vending.busObjs.Coin;
 import org.kata.vending.busObjs.Tolerance;
 
 public class CoinMetaData {
@@ -61,6 +60,22 @@ public class CoinMetaData {
 
 	public void setValue(double value) {
 		this.value = value;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		boolean rtn = false;
+		if (obj instanceof CoinageInput) {
+			CoinageInput coininput = (CoinageInput)obj;
+			rtn = getWeight().withInTolerance(coininput.getWeight())
+					&& getDiameter().withInTolerance(coininput.getDiameter())
+					&& getThickness().withInTolerance(coininput.getThickness());
+		}
+		else
+		{
+			throw new UnsupportedOperationException();
+		}
+		return rtn;
 	}
 
 }
